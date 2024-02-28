@@ -1,0 +1,65 @@
+<form class="row g-3 needs-validation" novalidate #userForm="ngForm">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">First name</label>
+      <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="userObj.firstName" class="form-control" minlength="3" required>
+      <div class="text-danger" *ngIf="firstName.invalid && (firstName.touched || firstName.dirty) || isFormSubmited" > 
+        <span *ngIf="firstName.errors?.['required']">This Is Required</span>
+        <span *ngIf="firstName.errors?.['minlength']">Min 3 Charactors Needed</span> 
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Last name</label>
+      <input type="text" name="lastName" [(ngModel)]="userObj.lastName" class="form-control" id="validationCustom02"      >
+      <!-- <div class="text-danger">
+        Please select a valid state.
+      </div> -->
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustomUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+        <input type="text"  name="userName" #email="ngModel" [(ngModel)]="userObj.userName" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control"  required>
+      </div>
+      <div class="text-danger" *ngIf="email.invalid && (email.touched || email.dirty) || isFormSubmited">
+        <span *ngIf="email.errors?.['required']">Required</span>
+        <span *ngIf="email.errors?.['pattern']">Email Id is Not Proper</span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom03" class="form-label">City</label>
+      <input type="text" name="city" [(ngModel)]="userObj.city"   class="form-control" id="validationCustom03"  > 
+      <!-- <div class="text-danger" >
+        Please provide a valid city.
+      </div> -->
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">State</label>
+      <select class="form-select" name="state" [(ngModel)]="userObj.state" id="validationCustom04"  >
+        <option selected disabled value="">Choose...</option>
+        <option>Maharashtra</option>
+        <option>Punjab</option>
+        <option>Goa</option>
+      </select>
+      <!-- <div class="text-danger">
+        Please select a valid state.
+      </div> -->
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Zip</label>
+      <input type="text" name="zipcode" [(ngModel)]="userObj.zipcode" class="form-control" id="validationCustom05"  >
+     
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" name="isAggree" [(ngModel)]="userObj.isAggree" type="checkbox" value="" id="invalidCheck"  >
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        
+      </div>
+    </div>
+    <div class="col-12">
+      {{!userForm.form.valid}}
+      <button class="btn btn-primary" [disabled]="!userForm.form.valid" type="button" (click)="onSubmit(userForm)">Submit form</button>
+    </div>
+  </form>
