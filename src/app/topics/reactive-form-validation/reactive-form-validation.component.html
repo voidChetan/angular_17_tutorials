@@ -1,1 +1,58 @@
-<p>reactive-form-validation works!</p>
+<form class="row g-3 needs-validation" [formGroup]="userForm">
+    <div class="col-md-4">
+        <label class="form-label">First name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+        <div class="text-danger" *ngIf="userForm.controls['firstName'].invalid && (isFormSubmitted || userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty)">
+           <span *ngIf="userForm.controls['firstName'].errors?.['required']">This Is Required</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Last name</label>
+        <input type="text" class="form-control"  formControlName="lastName">
+        <div class="text-danger" *ngIf="userForm.controls['lastName'].invalid   && (userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty)">
+            <span *ngIf="userForm.controls['lastName'].errors?.['required']"> This IS Required </span>
+            <span *ngIf="userForm.controls['lastName'].errors?.['minlength']"> MIn 4 Charactors Required </span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Username</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+            <input type="text" class="form-control" formControlName="userName">
+        </div>
+        <div class="text-danger" *ngIf="userForm.controls['userName'].invalid  && (userForm.controls['userName'].touched || userForm.controls['userName'].dirty)">
+            <span *ngIf="userForm.controls['userName'].errors?.['required']"> This IS Required </span>
+            <span *ngIf="userForm.controls['userName'].errors?.['email']"> Email Is Not Proper </span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">City</label>
+        <input type="text" class="form-control"  formControlName="city">
+        
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">State</label>
+        <select class="form-select" formControlName="state">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+        </select>
+        
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Zip</label>
+        <input type="text" class="form-control" formControlName="zipcode">
+         
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="isAgree">
+            <label class="form-check-label">
+                Agree to terms and conditions
+            </label>
+          
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="button" (click)="onSubmit()">Submit form</button>
+    </div>
+</form>
