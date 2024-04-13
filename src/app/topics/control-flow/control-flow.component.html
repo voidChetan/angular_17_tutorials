@@ -1,0 +1,184 @@
+<div class="mt-3 p-2 bg-secondary text-white rounded">
+    <h1>Control Flow Statements</h1>
+    <p>Angular 17</p>
+  </div>
+<div class="card mt-2">
+    <div class="card-header bg-success text-white">
+        <h6>
+            if ,else if, else, if (users$ | async; as users), 
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                @if(isDiv1Visible) {
+                    <div class="p-3 bg-success">
+                        Div-1
+                    </div>
+                }
+               
+            </div>
+            <div class="col-3">
+                <!-- @if(idDiv2Visible) {
+                    <div class="p-3 bg-secondary">
+                        Div-2
+                    </div>
+                } -->
+                @if(isDiv2Active == true) {
+                    <div class="p-3 bg-secondary">
+                        Div-2
+                    </div>
+                }
+            </div>
+            <div class="col-3">
+                <div class="p-3 bg-primary">
+                    @if(num1 == num2)  {
+                        <span>Both No Are Same</span>
+                    } @else {
+                        <span>Both No Are Different</span>
+                    }
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="p-3 bg-danger" >
+                    @switch(dayIndex) {
+                        @case('0') {
+                            <span>Sunday</span>
+                        }
+                        @case('1') {
+                            <span>Monday</span>
+                        }
+                        @case('2') {
+                            <span>Tuesday</span>
+                        }
+                        @case('3') {
+                            <span>Wednesday</span>
+                        }
+                        @case('4') {
+                            <span>Thursday</span>
+                        }
+                        @case('5') {
+                            <span>Friday</span>
+                        }
+                        @case('6') {
+                            <span>Saturday</span>
+                        }
+                        @default {
+                            <span>Wrong Entry</span>
+                        }
+
+                    }
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="row pt-3">
+            <div class="col-3 text-center">
+                <button class="btn btn-primary" (click)="isDiv1Visible = true">Show</button>
+                <button class="btn btn-danger mx-2" (click)="isDiv1Visible = false">Hide</button>
+            </div>
+            <div class="col-3 text-center"> 
+                <button class="btn btn-danger mx-2" (click)="idDiv2Visible = !idDiv2Visible">Toggle Div 2</button>
+                <input type="checkbox" class="mx-2"  [(ngModel)]="isDiv2Active"/> Show Div
+            </div>
+            <div class="col-3 text-center">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="text" [(ngModel)]="num1" placeholder="Roll No 1"  class="form-control"/>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" [(ngModel)]="num2"  placeholder="Roll No 2" class="form-control"/>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-3 text-center">
+                <input type="text" placeholder="Enter Day Index" [(ngModel)]="dayIndex"  class="form-control"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mt-4">
+    <div class="card-header bg-success text-white">
+        <h6>
+           for, track,empty
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <p>Player List</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(player of playerlist;track player.playerId;let index= $index;let first=$first) {
+                            <tr >
+                                <td> {{index+1}}-{{first}}</td>
+                                <td> {{player.playerName}}</td>
+                                <td> {{player.city}}</td>
+                                <td> 
+                                    @if(player.gender == 'M') {
+                                        <span>Male</span>
+                                    } @else {
+                                        <span>Fe-Male</span>
+                                    }
+                                    </td>
+                                <td> {{player.isActive}}</td>
+                            </tr>
+                        }
+                       
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <p>Player List With No Record</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(player of studentList;track player.playerId;let index= $index;let first=$first) {
+                            <tr >
+                                <td> {{index+1}}-{{first}}</td>
+                                <td> {{player.playerName}}</td>
+                                <td> {{player.city}}</td>
+                                <td> {{player.gender}}</td>
+                                <td> {{player.isActive}}</td>
+                            </tr>
+                        } @empty {
+                            <tr>
+                                <td colspan="5"> 
+                                    <p>No Record Found</p>
+                                </td>
+                            </tr>
+                        }
+                       
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <p>City List in UL LI</p>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
